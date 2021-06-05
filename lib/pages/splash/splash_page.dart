@@ -38,7 +38,7 @@ class _SplashPageState extends State<SplashPage> {
                   MaterialPageRoute(builder: (_) => HomePage()),
                   (route) => false);
             },
-            child: Text('Entrrar'),
+            child: Text('Acessar lista de heróis'),
           );
         },
       )),

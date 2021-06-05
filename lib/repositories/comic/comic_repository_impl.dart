@@ -16,7 +16,7 @@ class ComicRepositoryImpl implements ComicRepository {
   Future<ComicDataWrapper> get(Map<String, dynamic>? parametros) async {
     final result = await this
         .httpProvider
-        .fetch('${this.url}/$parametros/comics', parametros);
+        .fetch('${this.url}/${parametros!.values}/comics', parametros);
     return ComicDataWrapper.fromMap(result);
   }
 }

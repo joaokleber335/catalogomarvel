@@ -1,5 +1,4 @@
 import 'package:catalogo_marvel/pages/detail/detail_controller.dart';
-import 'package:catalogo_marvel/pages/widgets/generic_bottom_navigation_bar.dart';
 import 'package:catalogo_marvel/pages/widgets/my_hero_widget.dart';
 import 'package:catalogo_marvel/repositories/comic/comic_repository_impl.dart';
 import 'package:catalogo_marvel/shared/http_provider/http_provider_impl.dart';
@@ -24,7 +23,7 @@ class _DetailPageState extends State<DetailPage> {
   @override
   void initState() {
     print('iniciou essa porra');
-    _controller.getComics(widget.character);
+    _controller.getComics(widget.character.id);
     print(_controller.comics.value);
     super.initState();
   }
@@ -32,26 +31,26 @@ class _DetailPageState extends State<DetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: CustomScrollView(
-          slivers: [
-            SliverAppBar(
-              pinned: _pinned,
-              expandedHeight: 300,
-              flexibleSpace: FlexibleSpaceBar(
-                title: Text(widget.character.name),
-                background: MyHeroWidget(
-                  tag: widget.character.id,
-                  child: Image.network(
-                    widget.character.thumbnail.caminhoCompleto,
-                    fit: BoxFit.cover,
-                  ),
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            pinned: _pinned,
+            expandedHeight: 300,
+            flexibleSpace: FlexibleSpaceBar(
+              title: Text(widget.character.name),
+              background: MyHeroWidget(
+                tag: widget.character.id,
+                child: Image.network(
+                  widget.character.thumbnail.caminhoCompleto,
+                  fit: BoxFit.cover,
                 ),
               ),
             ),
-            _createHeroDetail()
-          ],
-        ),
-        bottomNavigationBar: GenericBottomNavigationBar());
+          ),
+          _createHeroDetail()
+        ],
+      ),
+    );
   }
 
   SliverList _createHeroDetail() {
